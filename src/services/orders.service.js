@@ -1,15 +1,31 @@
 import { prisma } from "../common/prisma/prisma.connect.js";
-
+import helper from "../common/helper/common.helper.js";
+import prismaHelper from "../common/helper/prisma.helper.js";
 const ordersService = {
     async getOrders(req) {
         try {
-            const data = await prisma.order.findMany({
+            let {page: queryPage, pageSize: queryPageSize, filters} = req.query;
+            // pagination
+            let {from, page, pageSize} = helper.handlePagination(queryPage, queryPageSize);
+            // filters
+            let where = prismaHelper.handleFilterOrderFindMany(filters);
+                    
+            const totalRowsPromis = prisma.order.count({
                 where: {
                     isDeleted: false,
+                    ...where,
+                },
+            })
+
+            const dataPromis = prisma.order.findMany({
+                skip: from,
+                take: pageSize,
+                where: {
+                    isDeleted: false,
+                    ...where,
                 },
                 select: {
                     id: true,
-                    user_id: true,
                     amount: true,
                     code: true,
                     createdAt: true,
@@ -31,8 +47,15 @@ const ordersService = {
                         } 
                     }
                 }
-            })
-            return {data};
+            });
+            const [totalRows, data] = await Promise.all([totalRowsPromis, dataPromis]);
+
+            return {data: {
+                page: page,
+                pageSize: pageSize,
+                totalPages: Math.ceil(totalRows / pageSize),
+                data: data,
+            }};
         } catch (err) {
             return {data: -1, message: err.message}
         }

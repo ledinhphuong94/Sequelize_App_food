@@ -4,7 +4,7 @@ import helper from "../common/helper/common.helper.js";
 
 const orderController = {
     async getOrders(req, res, next) {
-        const data = await ordersService.getOrders();
+        const data = await ordersService.getOrders(req);
         helper.handleResponse(data, res);
     },
 
