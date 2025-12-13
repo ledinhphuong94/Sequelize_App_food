@@ -1,20 +1,34 @@
 // import UsersModel from "../models/users.model.js";
 import {prisma} from "../common/prisma/prisma.connect.js";
 const userService = {
-    async findAll() {
+    async findAll(req) {
          
         // const data = await UsersModel.findAll({
         //     attributes: ['user_id', 'full_name', 'email']
         // });
-        // return data;
-        const firstName = "Lê"
-        const users = await prisma.user.findMany({
-            where: {
-                isDeleted: false,
-            }
-        })
-        console.log('>>> users', users)
-        return users
+        try {
+            console.log(req.query)
+            const {filters} = req.query;
+            const {fromDate, toDate} = JSON.parse(filters);
+            console.log('fromDate', fromDate)
+            console.log('toDate', toDate)
+            // return data;
+            const firstName = "Lê"
+            const users = await prisma.user.findMany({
+                where: {
+                    isDeleted: false,
+                    createdAt: {
+                        gte: new Date(fromDate),
+                        lt: new Date(toDate)
+                    }
+                }
+            })
+            // console.log('>>> users', users)
+            return users
+
+        } catch(err) {
+            console.log(err)
+        }
     },
 
     async findOne (req) {

@@ -1,24 +1,22 @@
 import likesService from "../services/likes.service.js";
 import helper from "../common/helper/common.helper.js";
 const likesController = {
-    async addLike(req, res, next) {
-        const data = await likesService.addLike(req);
-        helper.handleResponse(data, res);
-    },
-
-    async unLike(req, res, next) {
-        const data = await likesService.unLike(req);
-        helper.handleResponse(data, res);
+    async toggleLike(req, res, next) {
+        const data = await likesService.toggleLike(req);
+        const response = helper.handleSucessRes(data);
+        res.status(response.statusCode).json(response);
     },
 
     async findLikesByRes(req, res, next) {
         const data = await likesService.findLikesByRes(req);
-        helper.handleResponse(data, res);
+        const response = helper.handleSucessRes(data);
+        res.status(response.statusCode).json(response);
     },
 
     async findLikesByUser(req, res, next) {
         const data = await likesService.findLikesByUser(req);
-        helper.handleResponse(data, res);
+        const response = helper.handleSucessRes(data);
+        res.status(response.statusCode).json(response);
     }
 }
 

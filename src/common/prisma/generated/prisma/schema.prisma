@@ -35,15 +35,15 @@ model food_type {
 }
 
 model like_res {
-  user_id    Int?
-  res_id     Int?
-  date_like  DateTime    @default(now()) @db.DateTime(0)
-  createdAt  DateTime    @default(now()) @db.Timestamp(0)
-  isDeleted  Boolean     @default(false)
-  updatedAt  DateTime    @default(now()) @db.Timestamp(0)
-  id         Int         @id @default(autoincrement())
-  user       user?       @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "like_res_ibfk_1")
-  restaurant restaurant? @relation(fields: [res_id], references: [res_id], onDelete: NoAction, onUpdate: NoAction, map: "like_res_ibfk_2")
+  user_id    Int
+  res_id     Int
+  date_like  DateTime   @default(now()) @db.DateTime(0)
+  createdAt  DateTime   @default(now()) @db.Timestamp(0)
+  isDeleted  Boolean    @default(false)
+  updatedAt  DateTime   @default(now()) @db.Timestamp(0)
+  id         Int        @id @default(autoincrement())
+  user       user       @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "like_res_ibfk_1")
+  restaurant restaurant @relation(fields: [res_id], references: [res_id], onDelete: NoAction, onUpdate: NoAction, map: "like_res_ibfk_2")
 
   @@index([res_id], map: "res_id")
   @@index([user_id], map: "user_id")
@@ -110,7 +110,7 @@ model sub_food {
 model user {
   user_id   Int        @id @default(autoincrement())
   full_name String?    @db.VarChar(255)
-  email     String?    @db.VarChar(255)
+  email     String     @unique(map: "email") @db.VarChar(255)
   password  String?    @db.VarChar(255)
   createdAt DateTime   @default(now()) @db.Timestamp(0)
   isDeleted Boolean    @default(false)

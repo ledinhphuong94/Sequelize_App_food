@@ -4,12 +4,14 @@ import helper from "../common/helper/common.helper.js";
 const userController = {
     
     async findAll(red, res, next) {
-        const data = await userService.findAll();
+        console.log('findAll');
+        const data = await userService.findAll(red);
         const response = helper.handleSucessRes(data)
         res.status(response.statusCode).json(response)
     },
 
     async findOne(req, res, next) {
+        console.log('findOne');
         const data = await userService.findOne(req);
         const response = helper.handleSucessRes(data, "Find user success");
         res.status(response.statusCode).json(response);

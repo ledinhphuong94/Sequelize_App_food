@@ -1,41 +1,42 @@
 import {prisma} from "../common/prisma/prisma.connect.js";
+import {BadRequest} from "../common/helper/exception.helper.js";
 
 const likesService = {
-    async addLike(req) {       
-        let {user_id, res_id} = req.body;
-        
-        try {
-            if (isNaN(user_id) || isNaN(res_id)) {
-                throw new Error("Wrong format!");
-            };
-            const data = await prisma.like_res.create({
-                data: {
-                    user_id: Number(user_id),
-                    res_id: Number(res_id),
-                }
-            })
-            return { data: data.id };
-        } catch (err) {
-            console.log('>>>>>>',err.message)
-            return {data: -1, message: err.message};
-        } 
-    },
+    async toggleLike(req) {
+        let {res_id} = req.body;
+        let data;
+        if (isNaN(res_id)) {
+            throw new BadRequest("Res_id is in wrong format!");
+        };
+        const isLikeExist = await prisma.like_res.findFirst({
+            where: {
+                user_id: +req.user_id,
+                res_id: +res_id
+            }
+        });
 
-    async unLike(req) {
-        const {id} = req.params;
-        try {
-            const data = await prisma.like_res.update({
+        if (isLikeExist) {
+            data = await prisma.like_res.update({
                 where: {
-                    id: +id,
+                    id: isLikeExist.id
                 },
                 data: {
-                    isDeleted: true,
+                    isDeleted: !isLikeExist.isDeleted,
                 }
             });
-            return { data: data.id };
-        } catch(err) {
-            return { data: -1 , message: err.message};
+            data.action = data.isDeleted ? 'Unliked' : 'Liked'
+        } else {
+            // Chưa từng like bao giờ -> sẽ Like
+            data = await prisma.like_res.create({
+                data: {
+                    user_id: +req.user_id,
+                    res_id:+res_id,
+                }
+            });
+            data.action = 'Liked'
         }
+        const {id, action} = data;
+        return {id, action};
     },
 
     async findLikesByRes (req) {

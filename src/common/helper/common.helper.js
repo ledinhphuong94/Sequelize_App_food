@@ -1,3 +1,5 @@
+import { BadRequest } from "./exception.helper.js";
+
 const helper = {
     handleSucessRes(data, message="ok", statusCode=201) {
         return {
@@ -9,12 +11,11 @@ const helper = {
         };
     },
 
-    handleFailRes(data, message="fail", statusCode=400) {
+    handleFailRes(message="fail", statusCode=500) {
         return {
             status: "fail",
             statusCode,
             message,
-            data,
             doc: "example.com"
         };
     },
@@ -25,18 +26,24 @@ const helper = {
         if (data === -1) {
             response = this.handleFailRes( data, message);
         } else {
-            response = this.handleSucessRes(data, message);
+            response = this.handleSucessRes(message);
         }
         res.status(response.statusCode).json(response);
     },
 
     handlePagination(page, pageSize) {
+        if (isNaN(page) || isNaN(pageSize)) throw new BadRequest("page or pageSize must be an integer number!")
         const minPage = 1;
         const minPageSize = 5;
         let formatPage = Math.max(+page || minPage, minPage);
         let formatPageSize = Math.max(+pageSize || minPageSize, minPageSize);
         let from = (page -1) * pageSize;
         return {from, page: formatPage, pageSize: formatPageSize};
+    },
+
+    validateEmail(emailString) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(emailString);
     }
 }
 

@@ -3845,8 +3845,8 @@ export namespace Prisma {
   }
 
   export type Like_resGroupByOutputType = {
-    user_id: number | null
-    res_id: number | null
+    user_id: number
+    res_id: number
     date_like: Date
     createdAt: Date
     isDeleted: boolean
@@ -3881,8 +3881,8 @@ export namespace Prisma {
     isDeleted?: boolean
     updatedAt?: boolean
     id?: boolean
-    user?: boolean | like_res$userArgs<ExtArgs>
-    restaurant?: boolean | like_res$restaurantArgs<ExtArgs>
+    user?: boolean | userDefaultArgs<ExtArgs>
+    restaurant?: boolean | restaurantDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like_res"]>
 
 
@@ -3899,19 +3899,19 @@ export namespace Prisma {
 
   export type like_resOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "res_id" | "date_like" | "createdAt" | "isDeleted" | "updatedAt" | "id", ExtArgs["result"]["like_res"]>
   export type like_resInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | like_res$userArgs<ExtArgs>
-    restaurant?: boolean | like_res$restaurantArgs<ExtArgs>
+    user?: boolean | userDefaultArgs<ExtArgs>
+    restaurant?: boolean | restaurantDefaultArgs<ExtArgs>
   }
 
   export type $like_resPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "like_res"
     objects: {
-      user: Prisma.$userPayload<ExtArgs> | null
-      restaurant: Prisma.$restaurantPayload<ExtArgs> | null
+      user: Prisma.$userPayload<ExtArgs>
+      restaurant: Prisma.$restaurantPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      user_id: number | null
-      res_id: number | null
+      user_id: number
+      res_id: number
       date_like: Date
       createdAt: Date
       isDeleted: boolean
@@ -4257,8 +4257,8 @@ export namespace Prisma {
    */
   export interface Prisma__like_resClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends like_res$userArgs<ExtArgs> = {}>(args?: Subset<T, like_res$userArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    restaurant<T extends like_res$restaurantArgs<ExtArgs> = {}>(args?: Subset<T, like_res$restaurantArgs<ExtArgs>>): Prisma__restaurantClient<$Result.GetResult<Prisma.$restaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    restaurant<T extends restaurantDefaultArgs<ExtArgs> = {}>(args?: Subset<T, restaurantDefaultArgs<ExtArgs>>): Prisma__restaurantClient<$Result.GetResult<Prisma.$restaurantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4513,7 +4513,7 @@ export namespace Prisma {
     /**
      * The data needed to create a like_res.
      */
-    data?: XOR<like_resCreateInput, like_resUncheckedCreateInput>
+    data: XOR<like_resCreateInput, like_resUncheckedCreateInput>
   }
 
   /**
@@ -4635,44 +4635,6 @@ export namespace Prisma {
      * Limit how many like_res to delete.
      */
     limit?: number
-  }
-
-  /**
-   * like_res.user
-   */
-  export type like_res$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the user
-     */
-    select?: userSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the user
-     */
-    omit?: userOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: userInclude<ExtArgs> | null
-    where?: userWhereInput
-  }
-
-  /**
-   * like_res.restaurant
-   */
-  export type like_res$restaurantArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the restaurant
-     */
-    select?: restaurantSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the restaurant
-     */
-    omit?: restaurantOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: restaurantInclude<ExtArgs> | null
-    where?: restaurantWhereInput
   }
 
   /**
@@ -9036,7 +8998,7 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     user_id: number
     full_name: string | null
-    email: string | null
+    email: string
     password: string | null
     createdAt: Date
     isDeleted: boolean
@@ -9106,7 +9068,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       user_id: number
       full_name: string | null
-      email: string | null
+      email: string
       password: string | null
       createdAt: Date
       isDeleted: boolean
@@ -9708,7 +9670,7 @@ export namespace Prisma {
     /**
      * The data needed to create a user.
      */
-    data?: XOR<userCreateInput, userUncheckedCreateInput>
+    data: XOR<userCreateInput, userUncheckedCreateInput>
   }
 
   /**
@@ -10298,20 +10260,20 @@ export namespace Prisma {
     AND?: like_resWhereInput | like_resWhereInput[]
     OR?: like_resWhereInput[]
     NOT?: like_resWhereInput | like_resWhereInput[]
-    user_id?: IntNullableFilter<"like_res"> | number | null
-    res_id?: IntNullableFilter<"like_res"> | number | null
+    user_id?: IntFilter<"like_res"> | number
+    res_id?: IntFilter<"like_res"> | number
     date_like?: DateTimeFilter<"like_res"> | Date | string
     createdAt?: DateTimeFilter<"like_res"> | Date | string
     isDeleted?: BoolFilter<"like_res"> | boolean
     updatedAt?: DateTimeFilter<"like_res"> | Date | string
     id?: IntFilter<"like_res"> | number
-    user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    restaurant?: XOR<RestaurantNullableScalarRelationFilter, restaurantWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    restaurant?: XOR<RestaurantScalarRelationFilter, restaurantWhereInput>
   }
 
   export type like_resOrderByWithRelationInput = {
-    user_id?: SortOrderInput | SortOrder
-    res_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    res_id?: SortOrder
     date_like?: SortOrder
     createdAt?: SortOrder
     isDeleted?: SortOrder
@@ -10326,19 +10288,19 @@ export namespace Prisma {
     AND?: like_resWhereInput | like_resWhereInput[]
     OR?: like_resWhereInput[]
     NOT?: like_resWhereInput | like_resWhereInput[]
-    user_id?: IntNullableFilter<"like_res"> | number | null
-    res_id?: IntNullableFilter<"like_res"> | number | null
+    user_id?: IntFilter<"like_res"> | number
+    res_id?: IntFilter<"like_res"> | number
     date_like?: DateTimeFilter<"like_res"> | Date | string
     createdAt?: DateTimeFilter<"like_res"> | Date | string
     isDeleted?: BoolFilter<"like_res"> | boolean
     updatedAt?: DateTimeFilter<"like_res"> | Date | string
-    user?: XOR<UserNullableScalarRelationFilter, userWhereInput> | null
-    restaurant?: XOR<RestaurantNullableScalarRelationFilter, restaurantWhereInput> | null
+    user?: XOR<UserScalarRelationFilter, userWhereInput>
+    restaurant?: XOR<RestaurantScalarRelationFilter, restaurantWhereInput>
   }, "id">
 
   export type like_resOrderByWithAggregationInput = {
-    user_id?: SortOrderInput | SortOrder
-    res_id?: SortOrderInput | SortOrder
+    user_id?: SortOrder
+    res_id?: SortOrder
     date_like?: SortOrder
     createdAt?: SortOrder
     isDeleted?: SortOrder
@@ -10355,8 +10317,8 @@ export namespace Prisma {
     AND?: like_resScalarWhereWithAggregatesInput | like_resScalarWhereWithAggregatesInput[]
     OR?: like_resScalarWhereWithAggregatesInput[]
     NOT?: like_resScalarWhereWithAggregatesInput | like_resScalarWhereWithAggregatesInput[]
-    user_id?: IntNullableWithAggregatesFilter<"like_res"> | number | null
-    res_id?: IntNullableWithAggregatesFilter<"like_res"> | number | null
+    user_id?: IntWithAggregatesFilter<"like_res"> | number
+    res_id?: IntWithAggregatesFilter<"like_res"> | number
     date_like?: DateTimeWithAggregatesFilter<"like_res"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"like_res"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"like_res"> | boolean
@@ -10665,7 +10627,7 @@ export namespace Prisma {
     NOT?: userWhereInput | userWhereInput[]
     user_id?: IntFilter<"user"> | number
     full_name?: StringNullableFilter<"user"> | string | null
-    email?: StringNullableFilter<"user"> | string | null
+    email?: StringFilter<"user"> | string
     password?: StringNullableFilter<"user"> | string | null
     createdAt?: DateTimeFilter<"user"> | Date | string
     isDeleted?: BoolFilter<"user"> | boolean
@@ -10678,7 +10640,7 @@ export namespace Prisma {
   export type userOrderByWithRelationInput = {
     user_id?: SortOrder
     full_name?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
+    email?: SortOrder
     password?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     isDeleted?: SortOrder
@@ -10691,11 +10653,11 @@ export namespace Prisma {
 
   export type userWhereUniqueInput = Prisma.AtLeast<{
     user_id?: number
+    email?: string
     AND?: userWhereInput | userWhereInput[]
     OR?: userWhereInput[]
     NOT?: userWhereInput | userWhereInput[]
     full_name?: StringNullableFilter<"user"> | string | null
-    email?: StringNullableFilter<"user"> | string | null
     password?: StringNullableFilter<"user"> | string | null
     createdAt?: DateTimeFilter<"user"> | Date | string
     isDeleted?: BoolFilter<"user"> | boolean
@@ -10703,12 +10665,12 @@ export namespace Prisma {
     like_res?: Like_resListRelationFilter
     order?: OrderListRelationFilter
     rate_res?: Rate_resListRelationFilter
-  }, "user_id">
+  }, "user_id" | "email">
 
   export type userOrderByWithAggregationInput = {
     user_id?: SortOrder
     full_name?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
+    email?: SortOrder
     password?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     isDeleted?: SortOrder
@@ -10726,7 +10688,7 @@ export namespace Prisma {
     NOT?: userScalarWhereWithAggregatesInput | userScalarWhereWithAggregatesInput[]
     user_id?: IntWithAggregatesFilter<"user"> | number
     full_name?: StringNullableWithAggregatesFilter<"user"> | string | null
-    email?: StringNullableWithAggregatesFilter<"user"> | string | null
+    email?: StringWithAggregatesFilter<"user"> | string
     password?: StringNullableWithAggregatesFilter<"user"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"user"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"user"> | boolean
@@ -10883,13 +10845,13 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
-    user?: userCreateNestedOneWithoutLike_resInput
-    restaurant?: restaurantCreateNestedOneWithoutLike_resInput
+    user: userCreateNestedOneWithoutLike_resInput
+    restaurant: restaurantCreateNestedOneWithoutLike_resInput
   }
 
   export type like_resUncheckedCreateInput = {
-    user_id?: number | null
-    res_id?: number | null
+    user_id: number
+    res_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -10902,13 +10864,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: userUpdateOneWithoutLike_resNestedInput
-    restaurant?: restaurantUpdateOneWithoutLike_resNestedInput
+    user?: userUpdateOneRequiredWithoutLike_resNestedInput
+    restaurant?: restaurantUpdateOneRequiredWithoutLike_resNestedInput
   }
 
   export type like_resUncheckedUpdateInput = {
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
-    res_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    res_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -10917,8 +10879,8 @@ export namespace Prisma {
   }
 
   export type like_resCreateManyInput = {
-    user_id?: number | null
-    res_id?: number | null
+    user_id: number
+    res_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -10934,8 +10896,8 @@ export namespace Prisma {
   }
 
   export type like_resUncheckedUpdateManyInput = {
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
-    res_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
+    res_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -11237,7 +11199,7 @@ export namespace Prisma {
 
   export type userCreateInput = {
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -11250,7 +11212,7 @@ export namespace Prisma {
   export type userUncheckedCreateInput = {
     user_id?: number
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -11262,7 +11224,7 @@ export namespace Prisma {
 
   export type userUpdateInput = {
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -11275,7 +11237,7 @@ export namespace Prisma {
   export type userUncheckedUpdateInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -11288,7 +11250,7 @@ export namespace Prisma {
   export type userCreateManyInput = {
     user_id?: number
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -11297,7 +11259,7 @@ export namespace Prisma {
 
   export type userUpdateManyMutationInput = {
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -11307,7 +11269,7 @@ export namespace Prisma {
   export type userUncheckedUpdateManyInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -11598,14 +11560,14 @@ export namespace Prisma {
     type_id?: SortOrder
   }
 
-  export type UserNullableScalarRelationFilter = {
-    is?: userWhereInput | null
-    isNot?: userWhereInput | null
+  export type UserScalarRelationFilter = {
+    is?: userWhereInput
+    isNot?: userWhereInput
   }
 
-  export type RestaurantNullableScalarRelationFilter = {
-    is?: restaurantWhereInput | null
-    isNot?: restaurantWhereInput | null
+  export type RestaurantScalarRelationFilter = {
+    is?: restaurantWhereInput
+    isNot?: restaurantWhereInput
   }
 
   export type like_resCountOrderByAggregateInput = {
@@ -11648,6 +11610,11 @@ export namespace Prisma {
     user_id?: SortOrder
     res_id?: SortOrder
     id?: SortOrder
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: userWhereInput | null
+    isNot?: userWhereInput | null
   }
 
   export type FoodNullableScalarRelationFilter = {
@@ -11720,6 +11687,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type RestaurantNullableScalarRelationFilter = {
+    is?: restaurantWhereInput | null
+    isNot?: restaurantWhereInput | null
   }
 
   export type rate_resCountOrderByAggregateInput = {
@@ -11895,6 +11867,21 @@ export namespace Prisma {
     food_id?: SortOrder
   }
 
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
   export type userOrderByRelevanceInput = {
     fields: userOrderByRelevanceFieldEnum | userOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -11937,6 +11924,24 @@ export namespace Prisma {
 
   export type userSumOrderByAggregateInput = {
     user_id?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
 
   export type food_typeCreateNestedOneWithoutFoodInput = {
@@ -12129,22 +12134,18 @@ export namespace Prisma {
     connect?: restaurantWhereUniqueInput
   }
 
-  export type userUpdateOneWithoutLike_resNestedInput = {
+  export type userUpdateOneRequiredWithoutLike_resNestedInput = {
     create?: XOR<userCreateWithoutLike_resInput, userUncheckedCreateWithoutLike_resInput>
     connectOrCreate?: userCreateOrConnectWithoutLike_resInput
     upsert?: userUpsertWithoutLike_resInput
-    disconnect?: userWhereInput | boolean
-    delete?: userWhereInput | boolean
     connect?: userWhereUniqueInput
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutLike_resInput, userUpdateWithoutLike_resInput>, userUncheckedUpdateWithoutLike_resInput>
   }
 
-  export type restaurantUpdateOneWithoutLike_resNestedInput = {
+  export type restaurantUpdateOneRequiredWithoutLike_resNestedInput = {
     create?: XOR<restaurantCreateWithoutLike_resInput, restaurantUncheckedCreateWithoutLike_resInput>
     connectOrCreate?: restaurantCreateOrConnectWithoutLike_resInput
     upsert?: restaurantUpsertWithoutLike_resInput
-    disconnect?: restaurantWhereInput | boolean
-    delete?: restaurantWhereInput | boolean
     connect?: restaurantWhereUniqueInput
     update?: XOR<XOR<restaurantUpdateToOneWithWhereWithoutLike_resInput, restaurantUpdateWithoutLike_resInput>, restaurantUncheckedUpdateWithoutLike_resInput>
   }
@@ -12357,6 +12358,10 @@ export namespace Prisma {
     connectOrCreate?: rate_resCreateOrConnectWithoutUserInput | rate_resCreateOrConnectWithoutUserInput[]
     createMany?: rate_resCreateManyUserInputEnvelope
     connect?: rate_resWhereUniqueInput | rate_resWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
   }
 
   export type like_resUpdateManyWithoutUserNestedInput = {
@@ -12631,6 +12636,39 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
   export type food_typeCreateWithoutFoodInput = {
     type_name?: string | null
     createdAt?: Date | string
@@ -12863,7 +12901,7 @@ export namespace Prisma {
 
   export type userCreateWithoutLike_resInput = {
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -12875,7 +12913,7 @@ export namespace Prisma {
   export type userUncheckedCreateWithoutLike_resInput = {
     user_id?: number
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -12928,7 +12966,7 @@ export namespace Prisma {
 
   export type userUpdateWithoutLike_resInput = {
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12940,7 +12978,7 @@ export namespace Prisma {
   export type userUncheckedUpdateWithoutLike_resInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -12983,7 +13021,7 @@ export namespace Prisma {
 
   export type userCreateWithoutOrderInput = {
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -12995,7 +13033,7 @@ export namespace Prisma {
   export type userUncheckedCreateWithoutOrderInput = {
     user_id?: number
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13052,7 +13090,7 @@ export namespace Prisma {
 
   export type userUpdateWithoutOrderInput = {
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13064,7 +13102,7 @@ export namespace Prisma {
   export type userUncheckedUpdateWithoutOrderInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13111,7 +13149,7 @@ export namespace Prisma {
 
   export type userCreateWithoutRate_resInput = {
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13123,7 +13161,7 @@ export namespace Prisma {
   export type userUncheckedCreateWithoutRate_resInput = {
     user_id?: number
     full_name?: string | null
-    email?: string | null
+    email: string
     password?: string | null
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13176,7 +13214,7 @@ export namespace Prisma {
 
   export type userUpdateWithoutRate_resInput = {
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13188,7 +13226,7 @@ export namespace Prisma {
   export type userUncheckedUpdateWithoutRate_resInput = {
     user_id?: IntFieldUpdateOperationsInput | number
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13234,11 +13272,11 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
-    user?: userCreateNestedOneWithoutLike_resInput
+    user: userCreateNestedOneWithoutLike_resInput
   }
 
   export type like_resUncheckedCreateWithoutRestaurantInput = {
-    user_id?: number | null
+    user_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13305,8 +13343,8 @@ export namespace Prisma {
     AND?: like_resScalarWhereInput | like_resScalarWhereInput[]
     OR?: like_resScalarWhereInput[]
     NOT?: like_resScalarWhereInput | like_resScalarWhereInput[]
-    user_id?: IntNullableFilter<"like_res"> | number | null
-    res_id?: IntNullableFilter<"like_res"> | number | null
+    user_id?: IntFilter<"like_res"> | number
+    res_id?: IntFilter<"like_res"> | number
     date_like?: DateTimeFilter<"like_res"> | Date | string
     createdAt?: DateTimeFilter<"like_res"> | Date | string
     isDeleted?: BoolFilter<"like_res"> | boolean
@@ -13415,11 +13453,11 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
-    restaurant?: restaurantCreateNestedOneWithoutLike_resInput
+    restaurant: restaurantCreateNestedOneWithoutLike_resInput
   }
 
   export type like_resUncheckedCreateWithoutUserInput = {
-    res_id?: number | null
+    res_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13671,7 +13709,7 @@ export namespace Prisma {
   }
 
   export type like_resCreateManyRestaurantInput = {
-    user_id?: number | null
+    user_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13694,11 +13732,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: userUpdateOneWithoutLike_resNestedInput
+    user?: userUpdateOneRequiredWithoutLike_resNestedInput
   }
 
   export type like_resUncheckedUpdateWithoutRestaurantInput = {
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13707,7 +13745,7 @@ export namespace Prisma {
   }
 
   export type like_resUncheckedUpdateManyWithoutRestaurantInput = {
-    user_id?: NullableIntFieldUpdateOperationsInput | number | null
+    user_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13745,7 +13783,7 @@ export namespace Prisma {
   }
 
   export type like_resCreateManyUserInput = {
-    res_id?: number | null
+    res_id: number
     date_like?: Date | string
     createdAt?: Date | string
     isDeleted?: boolean
@@ -13779,11 +13817,11 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    restaurant?: restaurantUpdateOneWithoutLike_resNestedInput
+    restaurant?: restaurantUpdateOneRequiredWithoutLike_resNestedInput
   }
 
   export type like_resUncheckedUpdateWithoutUserInput = {
-    res_id?: NullableIntFieldUpdateOperationsInput | number | null
+    res_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
@@ -13792,7 +13830,7 @@ export namespace Prisma {
   }
 
   export type like_resUncheckedUpdateManyWithoutUserInput = {
-    res_id?: NullableIntFieldUpdateOperationsInput | number | null
+    res_id?: IntFieldUpdateOperationsInput | number
     date_like?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
