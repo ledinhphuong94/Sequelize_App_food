@@ -4,7 +4,7 @@ import prismaHelper from "../common/helper/prisma.helper.js";
 import {BadRequest} from "../common/helper/exception.helper.js";
 const ordersService = {
     async getOrders(req) {
-
+            let user_id = req.user_id;
             let {page: queryPage, pageSize: queryPageSize, filters} = req.query;
             // pagination
             let {from, page, pageSize} = helper.handlePagination(queryPage, queryPageSize);
@@ -13,6 +13,7 @@ const ordersService = {
                     
             const totalRowsPromis = prisma.order.count({
                 where: {
+                    user_id: user_id,
                     isDeleted: false,
                     ...where,
                 },
@@ -22,6 +23,7 @@ const ordersService = {
                 skip: from,
                 take: pageSize,
                 where: {
+                    user_id: user_id,
                     isDeleted: false,
                     ...where,
                 },
@@ -51,7 +53,7 @@ const ordersService = {
             });
             const [totalRows, data] = await Promise.all([totalRowsPromis, dataPromis]);
 
-            return data;
+            return {totalRows, data};
   
     },
 

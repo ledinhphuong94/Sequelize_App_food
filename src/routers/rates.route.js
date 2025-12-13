@@ -1,8 +1,9 @@
 import express from "express";
 import ratesController from "../controllers/rates.controller.js";
+import {authProtect} from "./authProtect.middleware.js";
 
 const ratesRoute = express.Router();
-ratesRoute.post("/", ratesController.addRate)
+ratesRoute.post("/", authProtect, ratesController.addRate)
 ratesRoute.get("/restaurant/:id", ratesController.findManyRatesByRes)
 ratesRoute.get("/user/:id", ratesController.findManyRatesByUser)
 

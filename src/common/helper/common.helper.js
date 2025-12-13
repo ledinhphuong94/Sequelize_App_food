@@ -20,17 +20,6 @@ const helper = {
         };
     },
 
-    handleResponse(resData, res) {
-        let response;
-        const {data, message} = resData;
-        if (data === -1) {
-            response = this.handleFailRes( data, message);
-        } else {
-            response = this.handleSucessRes(message);
-        }
-        res.status(response.statusCode).json(response);
-    },
-
     handlePagination(page, pageSize) {
         if (isNaN(page) || isNaN(pageSize)) throw new BadRequest("page or pageSize must be an integer number!")
         const minPage = 1;

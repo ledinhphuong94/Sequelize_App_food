@@ -3,17 +3,20 @@ import helper from "../common/helper/common.helper.js";
 const ratesController = {
     async addRate(req, res, next) {
         const data = await ratesService.addrate(req);
-        helper.handleResponse(data, res);
+        const reponse = helper.handleSucessRes(data);
+        res.status(reponse.statusCode).json(reponse);
     },
 
     async findManyRatesByRes (req, res, next) {
         const data = await ratesService.ratesByRes(req);
-        helper.handleResponse(data, res);
+        const reponse = helper.handleSucessRes(data);
+        res.status(reponse.statusCode).json(reponse);
     },
 
     async findManyRatesByUser (req, res, next) {
         const data = await ratesService.ratesByUser(req);
-        helper.handleResponse(data, res);
+        const reponse = helper.handleSucessRes(data);
+        res.status(reponse.statusCode).json(reponse);
     }
 }
 

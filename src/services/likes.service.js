@@ -41,32 +41,24 @@ const likesService = {
 
     async findLikesByRes (req) {
         const {id} = req.params;
-        try {
-            const data = await prisma.like_res.findMany({
-                where: {
-                    res_id: +id,
-                    isDeleted: false,
-                }
-            })
-            return { data: data };
-        } catch (err) {
-            return { data: -1 , message: err.message};
-        }
+        const data = await prisma.like_res.findMany({
+            where: {
+                res_id: +id,
+                isDeleted: false,
+            }
+        })
+        return data ;
     },
 
     async findLikesByUser (req) {
         const {id} = req.params;
-        try {
-            const data = await prisma.like_res.findMany({
-                where: {
-                    user_id: +id,
-                    isDeleted: false,
-                }
-            })
-            return { data: data };
-        } catch (err) {
-            return { data: -1 , message: err.message};
-        }
+        const data = await prisma.like_res.findMany({
+            where: {
+                user_id: +id,
+                isDeleted: false,
+            }
+        })
+        return data;
     },
 }
 export default likesService;
