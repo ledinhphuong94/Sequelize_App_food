@@ -1,7 +1,7 @@
 # Sequelize_App_food
 
 ## Mô tả
-Ứng dụng thực phẩm sử dụng Node.js, Express.js, Prisma và Sequelize để quản lý người dùng, đơn hàng, đánh giá và thích.
+Ứng dụng Food sử dụng Node.js, Express.js, Prisma và Sequelize để quản lý người dùng, đơn hàng, đánh giá và thích.
 
 ## Công nghệ sử dụng
 - Node.js
