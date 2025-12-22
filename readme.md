@@ -16,8 +16,7 @@
 1. Clone repository
 2. `npm install`
 3. Cấu hình file `.env` với DATABASE_URL, JWT_SECRET, v.v.
-4. `npx prisma migrate dev`
-5. `npm run prisma`
+4. `npm run prisma`
 
 ## Chạy ứng dụng
 `npm run dev`
