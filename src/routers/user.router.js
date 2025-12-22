@@ -1,20 +1,12 @@
 import express from "express";
 import userController from "../controllers/users.controller.js";
+import upload from "../common/helper/multer.helper.js";
 const usersRouter = express.Router();
 
-usersRouter.get("/", 
-    (req, res, next) => {
-        console.log("middle 1")
-        next()
-    }, 
-    (req, res, next) => {
-        console.log("middle 2")
-        throw new Error("This is big error")
-        next()
-    }, 
-    userController.findAll
-)
+usersRouter.get("/", userController.findAll)
 usersRouter.post("/", userController.addUser);
+usersRouter.post("/upload-avatar-local", upload.single('avatar'), userController.upAvatarLocal)
+
 usersRouter.delete("/:id", userController.softDelete);
 usersRouter.get("/:id", userController.findOne);
 export default usersRouter;

@@ -1,5 +1,6 @@
 // import UsersModel from "../models/users.model.js";
 import {prisma} from "../common/prisma/prisma.connect.js";
+import multerHelper from "../common/helper/multer.helper.js";
 const userService = {
     async findAll(req) {
          
@@ -66,6 +67,10 @@ const userService = {
             }
         })
         return data
-    }
+    },
+
+    async upAvatarLocal (req) {
+        return req.file;
+    },
 }
 export default userService;

@@ -27,6 +27,12 @@ const userController = {
         const data = await userService.addUser(req);
         const response = helper.handleSucessRes(data, "Add user success");
         res.status(response.statusCode).json(response);
+    },
+
+    async upAvatarLocal(req, res, next) {
+        const data = await userService.upAvatarLocal(req);
+        const response = helper.handleSucessRes(data, "Upload avatar Local success");
+        res.status(response.statusCode).json(response);
     }
 
 }

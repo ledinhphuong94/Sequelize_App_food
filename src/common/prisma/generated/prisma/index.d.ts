@@ -8846,6 +8846,8 @@ export namespace Prisma {
     createdAt: Date | null
     isDeleted: boolean | null
     updatedAt: Date | null
+    google_id: string | null
+    avatar: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -8856,6 +8858,8 @@ export namespace Prisma {
     createdAt: Date | null
     isDeleted: boolean | null
     updatedAt: Date | null
+    google_id: string | null
+    avatar: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -8866,6 +8870,8 @@ export namespace Prisma {
     createdAt: number
     isDeleted: number
     updatedAt: number
+    google_id: number
+    avatar: number
     _all: number
   }
 
@@ -8886,6 +8892,8 @@ export namespace Prisma {
     createdAt?: true
     isDeleted?: true
     updatedAt?: true
+    google_id?: true
+    avatar?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -8896,6 +8904,8 @@ export namespace Prisma {
     createdAt?: true
     isDeleted?: true
     updatedAt?: true
+    google_id?: true
+    avatar?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -8906,6 +8916,8 @@ export namespace Prisma {
     createdAt?: true
     isDeleted?: true
     updatedAt?: true
+    google_id?: true
+    avatar?: true
     _all?: true
   }
 
@@ -9003,6 +9015,8 @@ export namespace Prisma {
     createdAt: Date
     isDeleted: boolean
     updatedAt: Date
+    google_id: string | null
+    avatar: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -9032,6 +9046,8 @@ export namespace Prisma {
     createdAt?: boolean
     isDeleted?: boolean
     updatedAt?: boolean
+    google_id?: boolean
+    avatar?: boolean
     like_res?: boolean | user$like_resArgs<ExtArgs>
     order?: boolean | user$orderArgs<ExtArgs>
     rate_res?: boolean | user$rate_resArgs<ExtArgs>
@@ -9048,9 +9064,11 @@ export namespace Prisma {
     createdAt?: boolean
     isDeleted?: boolean
     updatedAt?: boolean
+    google_id?: boolean
+    avatar?: boolean
   }
 
-  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "full_name" | "email" | "password" | "createdAt" | "isDeleted" | "updatedAt", ExtArgs["result"]["user"]>
+  export type userOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"user_id" | "full_name" | "email" | "password" | "createdAt" | "isDeleted" | "updatedAt" | "google_id" | "avatar", ExtArgs["result"]["user"]>
   export type userInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     like_res?: boolean | user$like_resArgs<ExtArgs>
     order?: boolean | user$orderArgs<ExtArgs>
@@ -9073,6 +9091,8 @@ export namespace Prisma {
       createdAt: Date
       isDeleted: boolean
       updatedAt: Date
+      google_id: string | null
+      avatar: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -9452,6 +9472,8 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"user", 'DateTime'>
     readonly isDeleted: FieldRef<"user", 'Boolean'>
     readonly updatedAt: FieldRef<"user", 'DateTime'>
+    readonly google_id: FieldRef<"user", 'String'>
+    readonly avatar: FieldRef<"user", 'String'>
   }
     
 
@@ -10000,7 +10022,9 @@ export namespace Prisma {
     password: 'password',
     createdAt: 'createdAt',
     isDeleted: 'isDeleted',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    google_id: 'google_id',
+    avatar: 'avatar'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -10065,7 +10089,9 @@ export namespace Prisma {
   export const userOrderByRelevanceFieldEnum: {
     full_name: 'full_name',
     email: 'email',
-    password: 'password'
+    password: 'password',
+    google_id: 'google_id',
+    avatar: 'avatar'
   };
 
   export type userOrderByRelevanceFieldEnum = (typeof userOrderByRelevanceFieldEnum)[keyof typeof userOrderByRelevanceFieldEnum]
@@ -10632,6 +10658,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"user"> | Date | string
     isDeleted?: BoolFilter<"user"> | boolean
     updatedAt?: DateTimeFilter<"user"> | Date | string
+    google_id?: StringNullableFilter<"user"> | string | null
+    avatar?: StringNullableFilter<"user"> | string | null
     like_res?: Like_resListRelationFilter
     order?: OrderListRelationFilter
     rate_res?: Rate_resListRelationFilter
@@ -10645,6 +10673,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeleted?: SortOrder
     updatedAt?: SortOrder
+    google_id?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
     like_res?: like_resOrderByRelationAggregateInput
     order?: orderOrderByRelationAggregateInput
     rate_res?: rate_resOrderByRelationAggregateInput
@@ -10662,6 +10692,8 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"user"> | Date | string
     isDeleted?: BoolFilter<"user"> | boolean
     updatedAt?: DateTimeFilter<"user"> | Date | string
+    google_id?: StringNullableFilter<"user"> | string | null
+    avatar?: StringNullableFilter<"user"> | string | null
     like_res?: Like_resListRelationFilter
     order?: OrderListRelationFilter
     rate_res?: Rate_resListRelationFilter
@@ -10675,6 +10707,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeleted?: SortOrder
     updatedAt?: SortOrder
+    google_id?: SortOrderInput | SortOrder
+    avatar?: SortOrderInput | SortOrder
     _count?: userCountOrderByAggregateInput
     _avg?: userAvgOrderByAggregateInput
     _max?: userMaxOrderByAggregateInput
@@ -10693,6 +10727,8 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"user"> | Date | string
     isDeleted?: BoolWithAggregatesFilter<"user"> | boolean
     updatedAt?: DateTimeWithAggregatesFilter<"user"> | Date | string
+    google_id?: StringNullableWithAggregatesFilter<"user"> | string | null
+    avatar?: StringNullableWithAggregatesFilter<"user"> | string | null
   }
 
   export type foodCreateInput = {
@@ -11204,6 +11240,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resCreateNestedManyWithoutUserInput
     order?: orderCreateNestedManyWithoutUserInput
     rate_res?: rate_resCreateNestedManyWithoutUserInput
@@ -11217,6 +11255,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resUncheckedCreateNestedManyWithoutUserInput
     order?: orderUncheckedCreateNestedManyWithoutUserInput
     rate_res?: rate_resUncheckedCreateNestedManyWithoutUserInput
@@ -11229,6 +11269,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUpdateManyWithoutUserNestedInput
     order?: orderUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUpdateManyWithoutUserNestedInput
@@ -11242,6 +11284,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUncheckedUpdateManyWithoutUserNestedInput
     order?: orderUncheckedUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUncheckedUpdateManyWithoutUserNestedInput
@@ -11255,6 +11299,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
   }
 
   export type userUpdateManyMutationInput = {
@@ -11264,6 +11310,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type userUncheckedUpdateManyInput = {
@@ -11274,6 +11322,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11896,6 +11946,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeleted?: SortOrder
     updatedAt?: SortOrder
+    google_id?: SortOrder
+    avatar?: SortOrder
   }
 
   export type userAvgOrderByAggregateInput = {
@@ -11910,6 +11962,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeleted?: SortOrder
     updatedAt?: SortOrder
+    google_id?: SortOrder
+    avatar?: SortOrder
   }
 
   export type userMinOrderByAggregateInput = {
@@ -11920,6 +11974,8 @@ export namespace Prisma {
     createdAt?: SortOrder
     isDeleted?: SortOrder
     updatedAt?: SortOrder
+    google_id?: SortOrder
+    avatar?: SortOrder
   }
 
   export type userSumOrderByAggregateInput = {
@@ -12906,6 +12962,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     order?: orderCreateNestedManyWithoutUserInput
     rate_res?: rate_resCreateNestedManyWithoutUserInput
   }
@@ -12918,6 +12976,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     order?: orderUncheckedCreateNestedManyWithoutUserInput
     rate_res?: rate_resUncheckedCreateNestedManyWithoutUserInput
   }
@@ -12971,6 +13031,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     order?: orderUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUpdateManyWithoutUserNestedInput
   }
@@ -12983,6 +13045,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     order?: orderUncheckedUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13026,6 +13090,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resCreateNestedManyWithoutUserInput
     rate_res?: rate_resCreateNestedManyWithoutUserInput
   }
@@ -13038,6 +13104,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resUncheckedCreateNestedManyWithoutUserInput
     rate_res?: rate_resUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13095,6 +13163,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUpdateManyWithoutUserNestedInput
   }
@@ -13107,6 +13177,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUncheckedUpdateManyWithoutUserNestedInput
     rate_res?: rate_resUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13154,6 +13226,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resCreateNestedManyWithoutUserInput
     order?: orderCreateNestedManyWithoutUserInput
   }
@@ -13166,6 +13240,8 @@ export namespace Prisma {
     createdAt?: Date | string
     isDeleted?: boolean
     updatedAt?: Date | string
+    google_id?: string | null
+    avatar?: string | null
     like_res?: like_resUncheckedCreateNestedManyWithoutUserInput
     order?: orderUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13219,6 +13295,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUpdateManyWithoutUserNestedInput
     order?: orderUpdateManyWithoutUserNestedInput
   }
@@ -13231,6 +13309,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isDeleted?: BoolFieldUpdateOperationsInput | boolean
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    google_id?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     like_res?: like_resUncheckedUpdateManyWithoutUserNestedInput
     order?: orderUncheckedUpdateManyWithoutUserNestedInput
   }

@@ -1,8 +1,11 @@
 import {prisma} from "../common/prisma/prisma.connect.js";
-import {BadRequest, NotFound} from "../common/helper/exception.helper.js";
+import {BadRequest, NotFound, Unauthorized} from "../common/helper/exception.helper.js";
 import helper from "../common/helper/common.helper.js";
 import bcryptHelper from "../common/helper/bcrypt.helper.js";
 import JWT from "../common/helper/jwt.helper.js";
+import jwt from "jsonwebtoken";
+import {ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY} from "../common/constant/app.constant.js";
+import { color } from "chart.js/helpers";
 
 const authService = {
     async register(req) {
@@ -48,10 +51,7 @@ const authService = {
             user_id: existAcc.user_id,
         }
         
-        const token = {
-            accessToken: JWT.encode({...payload, type: "access_token"}),
-            refreshToken: JWT.encode({...payload, type: "refresh_token",}),
-        }
+        const token =  JWT.sign({...payload});
         
         return token
     },
@@ -70,6 +70,42 @@ const authService = {
 
         return user;
     },
+
+    async refreshToken(req) {
+        const {accessToken, refreshToken} = req.body;
+        if (!accessToken || !refreshToken) {
+            throw new BadRequest("Token not exist!")
+        };
+
+        const at = jwt.verify(accessToken, ACCESS_TOKEN_KEY, {ignoreExpiration: true});
+        const ft = jwt.verify(refreshToken, REFRESH_TOKEN_KEY);
+        
+        if (at.user_id !== ft.user_id) {
+            throw new Unauthorized("Invalud user_id!")
+        };
+
+        const existUser = prisma.user.findUnique({
+            where: {
+                user_id: at.user_id
+            }
+        });
+
+        if (!existUser) {
+            throw new Unauthorized("User not found!")
+        };
+
+        const token = JWT.sign({user_id: existUser.user_id})
+        return token
+    },
+
+    async signinGoogleCallback(req) {
+        const googleUser = req.user;
+        console.dir(googleUser, {colors: true, depth: null})
+        const token = JWT.sign({user_id: googleUser.user_id});
+        const {accessToken, refreshToken} = token;
+        return `http://localhost:3001?accessToken=${accessToken}&refreshToken=${refreshToken}`
+
+    }
 }
 
 export default authService;

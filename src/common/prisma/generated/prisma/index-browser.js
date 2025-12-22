@@ -200,7 +200,9 @@ exports.Prisma.UserScalarFieldEnum = {
   password: 'password',
   createdAt: 'createdAt',
   isDeleted: 'isDeleted',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  google_id: 'google_id',
+  avatar: 'avatar'
 };
 
 exports.Prisma.SortOrder = {
@@ -241,7 +243,9 @@ exports.Prisma.sub_foodOrderByRelevanceFieldEnum = {
 exports.Prisma.userOrderByRelevanceFieldEnum = {
   full_name: 'full_name',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  google_id: 'google_id',
+  avatar: 'avatar'
 };
 
 
